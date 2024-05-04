@@ -18,11 +18,15 @@ function generateRandomPassword(length = 8) {
 }
 
 
-test ('Cenário 1: Abrindo o site e validando as informações inicais', async({ page }) => {
+test ('Cenário 1: Abrindo o site e validando as informações do menu bar', async({ page }) => {
     await page.goto('https://magento.softwaretestingboard.com/');
+    await page.getByText("What's New").textContent();
+    await page.getByText("Women").textContent();
+    const fisrtGearDisplayed = await page.getByText("Gear").first()
+    fisrtGearDisplayed.textContent();
+    await page.getByText("Training").textContent();
+    await page.getByText("Sale").textContent();
     await page.getByText('Shop New Yoga').click();
-    const text = await page.getByText('Shopping Options').textContent(); //só um elemento
-    console.log(text)
 })
 
 
@@ -52,4 +56,12 @@ test ('Cenario 3: Fazendo uma conta', async ({ page }) => {
     await page.getByTestId('pass').fill('senha12@');
     await page.locator('.action.login.primary').click();
     await page.getByText('Welcome, Thaisa Santos! Change').textContent;
+})
+
+
+test ('Cenário 4: Adicionando alguns produtos ao carrinho de compras', async({ page }) => {
+    await page.goto('https://magento.softwaretestingboard.com/');
+    await page.getByText('Shop New Yoga').click();
+    const text = await page.getByText('Shopping Options').textContent();
+    console.log(text)
 })
