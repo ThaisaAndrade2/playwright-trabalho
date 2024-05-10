@@ -150,11 +150,11 @@ test ('Cenário 9: Adicionando um produto a lista de desejos', async({ page }) =
     await page.locator('text=Layla Tee').textContent;
     await page.locator('text=Size').textContent;
     await page.locator('//span[text()="Add to Wish List"]').click();
+    await page.getByText('Layla Tee has been added to your Wish List. Click here to continue shopping.').textContent;
     await page.waitForSelector('text=Layla Tee has been added to your Wish List. Click here to continue shopping.');
     const successMessage = await page.textContent('text=Layla Tee has been added to your Wish List. Click here to continue shopping.');
-    expect(successMessage).toBeTruthy();
+    expect(successMessage).toBeTruthy(); // Verifica se a mensagem está presente na página
 })
-
 
 
 test('Cenário 10: Logout e confirmação', async ({ page }) => {
